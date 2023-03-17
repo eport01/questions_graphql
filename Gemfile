@@ -35,6 +35,7 @@ group :development, :test do
   gem 'pry'
   gem 'faker'
   gem 'factory_bot_rails'
+  gem 'graphiql-rails'
 end
 
 group :development do
@@ -56,3 +57,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'jsonapi-serializer'
+gem "graphql", "~> 2.0"
