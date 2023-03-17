@@ -7,13 +7,48 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
-    field :users, 
-    [Types::UserType],
-    null: false, 
-    description: "Return a list of users"
+    field :users, [Types::UserType], null: false
 
     def users 
       User.all 
     end
+
+    field :user, Types::UserType, null: false do 
+      argument :id, ID, required: true 
+    end
+
+    def user(id:)
+      User.find(id)
+    end
+
+    field :t_questions, [Types::TQuestionType], null: false 
+    def t_questions 
+      TQuestion.all 
+    end
+
+    field :t_question, Types::TQuestionType, null: false do 
+      argument :id, ID, required: true 
+    end
+
+    def t_question(id:)
+      TQuestion.find(id)
+    end
+
+
+    field :b_questions, [Types::BQuestionType], null: false 
+    def b_questions 
+      BQuestion.all 
+    end
+
+    field :b_question, Types::BQuestionType, null: false do 
+      argument :id, ID, required: true 
+    end
+
+    def b_question(id:)
+      BQuestion.find(id)
+    end
+
+
+
   end
 end
