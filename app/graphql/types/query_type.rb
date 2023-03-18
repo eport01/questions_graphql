@@ -56,6 +56,13 @@ module Types
       UserTQuestion.find(id)
     end
 
+    field :user_b_question, Types::UserBQuestionType, null: false do 
+      argument :id, ID, required: true 
+    end
+
+    def user_b_question(id:)
+      UserBQuestion.find(id)
+    end
 
 
   end

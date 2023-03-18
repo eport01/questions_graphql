@@ -32,5 +32,25 @@ module Types
       .where("user_t_questions.status = 2")
     end
 
+    field :active_behav_ques, [Types::BQuestionType]
+    def active_behav_ques
+      BQuestion.joins(:user_b_questions)
+      .where("user_b_questions.user_id = #{object.id}")
+      .where("user_b_questions.status = 0")
+    end
+
+    field :inactive_behav_ques, [Types::BQuestionType]
+    def inactive_behav_ques
+      BQuestion.joins(:user_b_questions)
+      .where("user_b_questions.user_id = #{object.id}")
+      .where("user_b_questions.status = 1")
+    end
+
+    field :favorited_behav_ques, [Types::BQuestionType]
+    def favorited_behav_ques
+      BQuestion.joins(:user_b_questions)
+      .where("user_b_questions.user_id = #{object.id}")
+      .where("user_b_questions.status = 2")
+    end
   end
 end
