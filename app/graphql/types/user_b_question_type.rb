@@ -9,5 +9,11 @@ module Types
     field :status, Integer
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
+  
+    field :b_question, Types::TQuestionType, null: false do 
+    end
+    def b_question
+      BQuestion.find(object.id)
+    end
   end
 end

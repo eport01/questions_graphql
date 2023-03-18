@@ -16,6 +16,8 @@ module Types
       TQuestion.find(object.id)
     end
 
+    
+
 
   end
 end
