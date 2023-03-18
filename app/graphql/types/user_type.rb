@@ -9,6 +9,7 @@ module Types
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
     field :t_questions, [Types::TQuestionType]
+    field :b_questions, [Types::BQuestionType]
 
     # field :tech, Types::TQuestionType, null: true
     # def tech 

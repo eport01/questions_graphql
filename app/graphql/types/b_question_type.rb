@@ -7,7 +7,7 @@ module Types
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
 
-    field :users, Types::UserType, null: true 
+    field :users, [Types::UserType] 
 
   end
 end
