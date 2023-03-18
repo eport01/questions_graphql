@@ -48,6 +48,14 @@ module Types
       BQuestion.find(id)
     end
 
+    field :user_t_question, Types::UserTQuestionType, null: false do 
+      argument :id, ID, required: true 
+    end
+
+    def user_t_question(id:)
+      UserTQuestion.find(id)
+    end
+
 
 
   end

@@ -11,12 +11,26 @@ module Types
     field :t_questions, [Types::TQuestionType]
     field :b_questions, [Types::BQuestionType]
 
-    # field :tech, Types::TQuestionType, null: true
-    # def tech 
-    #   TQuestion.joins(:user_t_questions)
-    #   .where("user_t_questions.user_id = #{object.id}")
-    # end
+    field :active_tech_ques, [Types::TQuestionType]
+    def active_tech_ques
+      TQuestion.joins(:user_t_questions)
+      .where("user_t_questions.user_id = #{object.id}")
+      .where("user_t_questions.status = 0")
+    end
 
-    # field :b_questions, Types::BQuestionType, null: true
+    field :inactive_tech_ques, [Types::TQuestionType]
+    def inactive_tech_ques
+      TQuestion.joins(:user_t_questions)
+      .where("user_t_questions.user_id = #{object.id}")
+      .where("user_t_questions.status = 1")
+    end
+
+    field :favorited_tech_ques, [Types::TQuestionType]
+    def favorited_tech_ques
+      TQuestion.joins(:user_t_questions)
+      .where("user_t_questions.user_id = #{object.id}")
+      .where("user_t_questions.status = 2")
+    end
+
   end
 end
