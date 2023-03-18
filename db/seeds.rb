@@ -9,7 +9,5 @@
 5.times do 
   user = User.create(name: Faker::Name.name, email: Faker::Internet.email, password_digest: Faker::Internet.password )
   t_question = TQuestion.create(question: Faker::Quote.yoda, q_type: Faker::Number.between(from: 1, to: 2) )
-  5.times do 
-    user.user_t_questions.create(user_id: user.id, t_question_id: t_question.id, answer: Faker::Quote.famous_last_words, status: Faker::Number.between(from: 1, to: 3))
-  end
+  user.user_t_questions.create(user_id: User.last.id, t_question_id: TQuestion.last.id, answer: Faker::Quote.famous_last_words, status: Faker::Number.between(from: 0, to: 2))
 end
