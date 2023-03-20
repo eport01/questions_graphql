@@ -7,6 +7,11 @@ module Mutations
     argument :answer, String, required: true 
     field :errors, String, null: true
     field :user_t_question, Types::UserTQuestionType, null: true 
+    field :t_question, [Types::TQuestionType], null: false 
+
+    def t_question
+      TQuestion.find(object.t_question_id)
+    end
 
     def resolve(id:, user_id:, t_question_id:, status:, answer:)
       user_t_question = UserTQuestion.find_by(id: id)
@@ -19,7 +24,7 @@ module Mutations
             user_id: user_id,
             t_question_id: t_question_id,
             status: status,
-            answer: answer 
+            answer: answer
           },
           errors: []
         }
