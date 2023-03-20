@@ -11,6 +11,12 @@ module Types
     field :t_questions, [Types::TQuestionType]
     field :b_questions, [Types::BQuestionType]
 
+    field :user_t_questions, [Types::UserTQuestionType]
+    field :user_b_questions, [Types::UserBQuestionType]
+
+
+
+    
     field :active_tech_ques, [Types::TQuestionType]
     def active_tech_ques
       TQuestion.joins(:user_t_questions)

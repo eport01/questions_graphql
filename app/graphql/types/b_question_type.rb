@@ -8,6 +8,7 @@ module Types
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
 
     field :users, [Types::UserType] 
+    field :user_b_question, [Types::UserBQuestionType]
 
   end
 end
