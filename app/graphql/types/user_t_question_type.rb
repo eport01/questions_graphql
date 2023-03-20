@@ -13,7 +13,7 @@ module Types
     field :t_question, Types::TQuestionType, null: false do 
     end
     def t_question
-      TQuestion.find(object.id)
+      TQuestion.find(object.t_question_id)
     end
 
     
