@@ -48,6 +48,44 @@ Expected Response:
 </details><br>
 
 <details close>
+  <summary>Create a New User</summary><br>
+
+Creates a new user with authenticated password<br>
+
+```query
+mutation {
+  createUser(input:{
+    name: "Louie",
+    authProvider: {
+      credentials: {
+        email: "louie@zoe.com",
+        password: "123456"
+      }
+    }}
+  ) {
+    id
+    name
+    email
+  }
+}
+```
+
+Expected Response:
+
+ ```json
+{
+  "data": {
+    "createUser": {
+      "id": "9",
+      "name": "Louie",
+      "email": "louie@zoe.com"
+    }
+  }
+}
+```
+</details><br>
+
+<details close>
   <summary>Login A User</summary><br>
 
 <br>
