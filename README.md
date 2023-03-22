@@ -48,6 +48,41 @@ Expected Response:
 </details><br>
 
 <details close>
+  <summary>Login A User</summary><br>
+
+<br>
+
+```mutation
+mutation {
+  signinUser(input:{credentials: {
+    email: "email@example.com",
+    password: "123456"
+  }}){
+    token
+    user {
+      id
+    }
+  }
+}  
+```
+
+Expected Response:
+
+ ```json
+{
+  "data": {
+    "signinUser": {
+      "token": "CpKhgC4UyYLcgHBkgRnAZzDgYQ==--lfHRCnMeCJpELskr--4JMVavDhOrTTVHdZiuU5ww==",
+      "user": {
+        "id": "7"
+      }
+    }
+  }
+}
+```
+</details><br>
+
+<details close>
   <summary>Find All Tech Questions</summary><br>
 
 Returns a list of all Tech Questions in the database<br>
@@ -255,22 +290,25 @@ Expected Response:
 <details close>
   <summary>Answer a Behavioral Question</summary><br>
 
-Saves that question and answer to that user<br>
+After logging in, a user can answer and save a question<br>
 
 ```mutation
 mutation {
-  createUserBQuestion(input: {userId: 1, bQuestionId: 3, answer: "hello there!"}){
-    userBQuestion {
-      id
-      userId
-      bQuestionId
-      status
+  createUserBQuestion(input: {bQuestionId: 1, answer: "hello"})
+    {
+     userBQuestion{
+      id 
+      status 
       answer
+      user {
+        name
+      }
       bQuestion {
         question
       }
+    }  
+  
     }
-  }
 }
 ```
 
@@ -281,13 +319,14 @@ Expected Response:
   "data": {
     "createUserBQuestion": {
       "userBQuestion": {
-        "id": "21",
-        "userId": 1,
-        "bQuestionId": 3,
+        "id": "25",
         "status": 1,
-        "answer": "hello there!",
+        "answer": "hello",
+        "user": {
+          "name": "Test User"
+        },
         "bQuestion": {
-          "question": "Tell me about a time when you had a conflict with a co-worker."
+          "question": "Why do you want to work for X company?"
         }
       }
     }

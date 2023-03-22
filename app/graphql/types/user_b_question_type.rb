@@ -12,7 +12,8 @@ module Types
   
     delegate :user, to: :object 
     delegate :b_question, to: :object 
-    
+    field :user, UserType, null: true, method: :user 
+
     field :b_question, Types::BQuestionType, null: false do 
     end
     def b_question
