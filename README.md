@@ -343,18 +343,16 @@ Expected Response:
 The status of the question can be updated so the user can star or unstar a question. The answer can also be updated<br>
 
 ```mutation
-mutation {
-  updateUserTQuestion(input: {id: 1, userId: 1, tQuestionId: 1, answer: "hello there!", status: 1}){
-    userTQuestion {
-    id 
-    answer
-    userId
-    tQuestionId
-    status
-      
-    
-    }
-  }
+mutation{
+  updateUserTQuestion(input:{id: 11, tQuestionId: 3, status: 2, answer: "I want chocolate!"}) 
+  
+ { userTQuestion{
+    id
+    answer 
+    status 
+  	tQuestionId 
+
+  }}
 }
 ```
 
@@ -365,11 +363,10 @@ Expected Response:
   "data": {
     "updateUserTQuestion": {
       "userTQuestion": {
-        "id": "1",
-        "answer": "hello there!",
-        "userId": 1,
-        "tQuestionId": 1,
-        "status": 1
+        "id": "11",
+        "answer": "I want chocolate!",
+        "status": 2,
+        "tQuestionId": 3
       }
     }
   }
