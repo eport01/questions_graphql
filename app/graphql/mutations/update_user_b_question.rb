@@ -1,8 +1,8 @@
 module Mutations
   class UpdateUserBQuestion < Mutations::BaseMutation
     argument :id, ID, required: true 
-    argument :user_id, Integer, required: true 
-    argument :b_question_id, Integer, required: true 
+    # argument :user_id, Integer, required: true 
+    # argument :b_question_id, Integer, required: true 
     argument :status, Integer, required: true 
     argument :answer, String, required: true 
     field :errors, String, null: true
@@ -16,7 +16,6 @@ module Mutations
         {
           user_b_question: {
             id: id,
-            b_question_id: b_question_id,
             status: status,
             answer: answer
           },
