@@ -58,16 +58,19 @@ mutation {
     name: "Louie",
     authProvider: {
       credentials: {
-        email: "louie@zoe.com",
+        email: "laure@zoe.com",
         password: "123456"
       }
     }}
   ) {
-    id
-    name
-    email
+        user {
+          name 
+          email
+        }
+        token
+      }
+    
   }
-}
 ```
 
 Expected Response:
@@ -76,9 +79,10 @@ Expected Response:
 {
   "data": {
     "createUser": {
-      "id": "9",
-      "name": "Louie",
-      "email": "louie@zoe.com"
+      "user": {
+        "name": "Louie"
+      },
+      "token": "mjAF0bjAdiIrb4UqXglHjR8VnXw=--E8144N+acp2SFVgI--2xEf3W43EIuc2b7VKTzbxQ=="
     }
   }
 }
