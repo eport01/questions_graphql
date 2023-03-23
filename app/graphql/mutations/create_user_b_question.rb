@@ -1,6 +1,6 @@
 module Mutations
   class CreateUserBQuestion < Mutations::BaseMutation
-    # argument :user_id, Integer, required: true 
+    argument :user_id, Integer, required: true 
     argument :b_question_id, Integer, required: true 
     argument :answer, String, required: true
     
@@ -10,11 +10,12 @@ module Mutations
     field :user_b_question, Types::UserBQuestionType, null: false 
     field :b_question, [Types::BQuestionType], null: false 
 
-    def resolve(b_question_id:, answer:)
-      # user = User.find(user_id)
+    def resolve(user_id:, b_question_id:, answer:)
+      user = User.find(user_id)
       b_question = BQuestion.find(b_question_id)
   
-      user_b_question = UserBQuestion.create!(user: context[:current_user], b_question_id: b_question.id, status: 1, answer: answer)
+      user_b_question = UserBQuestion.create!(user_id: user.id, b_question_id: b_question.id, status: 1, answer: answer)
+      # context[:current_user]
       #default status is 0, unanswered
       #answered question is 1
       {

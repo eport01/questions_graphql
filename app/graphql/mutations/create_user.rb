@@ -22,10 +22,11 @@ module Mutations
           password: auth_provider&.[](:credentials)&.[](:password)
         )
         # require 'pry'; binding.pry
-        crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base.byteslice(0..31))
-        token = crypt.encrypt_and_sign("user-id:#{ user.id }")
-        context[:session][:token] = token
-        { user: user, token: token, errors: [] }
+        # crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base.byteslice(0..31))
+        # token = crypt.encrypt_and_sign("user-id:#{ user.id }")
+        # context[:session][:token] = token
+        # { user: user, token: token, errors: [] }
+        {user: user, errors: []}
       end
       # def resolve(name:, email:, password_digest:)
       #   user = User.new(name: name, email: email, password_digest: password_digest)
