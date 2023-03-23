@@ -11,10 +11,10 @@ module Mutations
     field :t_question, [Types::TQuestionType], null: false 
 
     def resolve(user_id:, t_question_id:, answer:)
-      # user = User.find(user_id)
+      user = User.find(user_id)
       t_question = TQuestion.find(t_question_id)
 
-      user_t_question = UserTQuestion.create!(user_id: user_id, t_question_id: t_question.id, answer: answer)
+      user_t_question = UserTQuestion.create!(user_id: user.id, t_question_id: t_question.id, answer: answer)
       #context[:current_user]
       #default status is 0, unanswered
       #answered question is 1

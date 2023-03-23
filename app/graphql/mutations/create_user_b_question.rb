@@ -14,7 +14,7 @@ module Mutations
       user = User.find(user_id)
       b_question = BQuestion.find(b_question_id)
   
-      user_b_question = UserBQuestion.create!(user_id: user.id, b_question_id: b_question.id, status: 1, answer: answer)
+      user_b_question = UserBQuestion.create!(user_id: user.id, b_question_id: b_question.id, answer: answer)
       # context[:current_user]
       #default status is 0, unanswered
       #answered question is 1
