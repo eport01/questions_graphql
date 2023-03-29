@@ -9,7 +9,8 @@ module Mutations
       argument :name, String, required: true
       # argument :auth_provider, AuthProviderSignupData, required: false
       argument :email, String, required: true 
-      argument :password, String, required: true 
+      argument :token, String, required: true 
+      argument :uid, String, required: true 
 
       # type Types::UserType
       field :user, Types::UserType, null: true
@@ -17,11 +18,12 @@ module Mutations
 
       # field :user, Types::UserType, null:false 
       field :errors, [String], null: false 
-      def resolve(name: nil, email: nil, password: nil)
+      def resolve(name: nil, email: nil, token: nil, uid: nil )
         user = User.create!(
           name: name,
           email: email,
-          password: password
+          token: token,
+          uid: uid
         )
         # user = User.create!(
         #   name: name,

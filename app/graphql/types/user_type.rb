@@ -3,9 +3,10 @@
 module Types
   class UserType < Types::BaseObject
     field :id, ID, null: false
+    field :uid, Integer 
     field :name, String
     field :email, String
-    field :password_digest, String
+    field :token, String
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
     field :t_questions, [Types::TQuestionType]
