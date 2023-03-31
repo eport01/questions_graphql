@@ -15,7 +15,10 @@ module Types
     field :user_t_questions, [Types::UserTQuestionType]
     field :user_b_questions, [Types::UserBQuestionType]
 
-
+    field :todos, [Types::TodoType]
+    def todos 
+      Todo.where("todos.user_id = #{object.id}")
+    end
 
     
     field :active_tech_ques, [Types::TQuestionType]
