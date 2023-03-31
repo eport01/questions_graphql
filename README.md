@@ -202,13 +202,24 @@ Expected Response:
 
 
 <details close>
-  <summary>Find a User's Answered Questions</summary><br>
+  <summary>Get a User's TQuestions, BQuestions, and Todo Items</summary><br>
 
-Returns a list of tech and behavioral questions that a user has answered.<br>
+Returns all of a user's questions and todo list items<br>
 
 ```query
 query {
-  user(id:3){
+  user(id:1){
+    id 
+    name 
+    email
+    token   
+    todos {
+        id
+        item  
+        userId 
+        createdAt
+        updatedAt 
+    } 
     userTQuestions {
       id
       userId
@@ -239,46 +250,65 @@ Expected Response:
 
  ```json
 {
-  "data": {
-    "user": {
-      "name": "Johnathan Botsford",
-      "email": "joaquina@zemlak.io",
-      "userTQuestions": [
-        {
-          "id": "3",
-          "userId": 3,
-          "tQuestionId": 3,
-          "answer": "I regret that I should leave this world without again beholding him.",
-          "status": 0,
-          "tQuestion": {
-            "question": "Ow, ow, OW! On my ear you are!",
-            "qType": 0
-          }
+    "data": {
+        "user": {
+            "id": "1",
+            "name": "Louie",
+            "email": "nkyse@zoe.com",
+            "token": "123456",
+            "todos": [
+                {
+                    "id": "1",
+                    "item": "Take a nap",
+                    "userId": 1,
+                    "createdAt": "2023-03-31T18:30:19Z",
+                    "updatedAt": "2023-03-31T18:30:19Z"
+                },
+                {
+                    "id": "8",
+                    "item": "Apply for 2 jobs",
+                    "userId": 1,
+                    "createdAt": "2023-03-31T18:55:04Z",
+                    "updatedAt": "2023-03-31T18:55:04Z"
+                }
+            ],
+            "userTQuestions": [
+                {
+                    "id": "2",
+                    "userId": 1,
+                    "tQuestionId": 3,
+                    "answer": "steve !",
+                    "status": 0,
+                    "tQuestion": {
+                        "question": "What are the pros and cons of your chosen technology?",
+                        "qType": 3
+                    }
+                }
+            ],
+            "userBQuestions": [
+                {
+                    "id": "2",
+                    "userId": 1,
+                    "bQuestionId": 3,
+                    "answer": "this is hard!!",
+                    "status": 0,
+                    "bQuestion": {
+                        "question": "Tell me about a time when you had a conflict with a co-worker."
+                    }
+                },
+                {
+                    "id": "3",
+                    "userId": 1,
+                    "bQuestionId": 5,
+                    "answer": "good question",
+                    "status": 0,
+                    "bQuestion": {
+                        "question": "What project are you currently working on?"
+                    }
+                }
+            ]
         }
-      ],
-      "userBQuestions": [
-        {
-          "id": "1",
-          "userId": 3,
-          "bQuestionId": 3,
-          "answer": "",
-          "status": 0,
-          "bQuestion": {
-            "question": "Tell me about a time when you had a conflict with a co-worker."
-          }
-        },
-        {
-          "id": "2",
-          "userId": 3,
-          "bQuestionId": 3,
-          "answer": "",
-          "status": 0,
-          "bQuestion": {
-            "question": "Tell me about a time when you had a conflict with a co-worker."
-          }
-        },
-        {...}]
-    }}
+    }
 }
 ```
 </details><br>
@@ -454,6 +484,72 @@ Expected Response:
       }
     }
   }
+}
+```
+</details><br>
+
+<details close>
+  <summary>Create Todo List Item</summary><br>
+
+Creates an item on a user's todo list<br>
+
+```mutation
+mutation {
+  createTodo(input:{userId:1, item: "Take a nap"}){
+    todo {
+      id 
+      userId 
+      item 
+      createdAt
+      updatedAt
+    }
+  }
+   
+}
+```
+
+Expected Response:
+
+ ```json
+{
+  "data": {
+    "createTodo": {
+      "todo": {
+        "id": "5",
+        "userId": 1,
+        "item": "Take a nap",
+        "createdAt": "2023-03-31T18:30:29Z",
+        "updatedAt": "2023-03-31T18:30:29Z"
+      }
+    }
+  }
+}
+```
+</details><br>
+
+
+<details close>
+  <summary>Delete Todo List Item</summary><br>
+
+Deletes an item on a user's todo list<br>
+
+```mutation
+mutation {
+  deleteTodo(input:{id:7}){
+    message 
+  }
+}
+```
+
+Expected Response:
+
+ ```json
+{
+    "data": {
+        "deleteTodo": {
+            "message": "Item successfully deleted from todo list!"
+        }
+    }
 }
 ```
 </details><br>
