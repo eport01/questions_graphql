@@ -18,7 +18,7 @@ module Mutations
 
       # field :user, Types::UserType, null:false 
       field :errors, [String], null: false 
-      def resolve(name: nil, email: nil, token: nil, uid: nil )
+      def resolve(name:, email:, token:, uid:)
         user = User.create!(
           name: name,
           email: email,
